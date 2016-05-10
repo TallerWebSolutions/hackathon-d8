@@ -1,0 +1,18 @@
+{
+    "name": "root/src",
+    "authors": [
+        {
+            "name": "Luiz Amorim",
+            "email": "luiz.simples@gmail.com"
+        }
+    ],
+    "require": {
+      "drupal/drupal": "8.1.*"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    }
+}

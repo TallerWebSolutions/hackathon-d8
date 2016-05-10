@@ -2,7 +2,7 @@
 Hackathon Drupal 8
 
 ---------------------
-Para baixar uma imagem pronta, execute esse comando:
+Clone o projeto
 ```sh
 $ git clone https://github.com/TallerWebSolutions/hackathon-d8.git
 $ cd hackathon-d8/

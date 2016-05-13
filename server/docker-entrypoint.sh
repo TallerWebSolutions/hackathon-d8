@@ -8,8 +8,6 @@ sudo service nginx start
 
 while ! nc -q 1 drupal-db 3306 </dev/null; do sleep 3; done
 
-docroot/sites/default/default.settings.php
-
 if [ ! -f /drupal/src/docroot/sites/default/settings.php ]
 then
   cp /drupal/src/docroot/sites/default/default.settings.php /drupal/src/docroot/sites/default/settings.php

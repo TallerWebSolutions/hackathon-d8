@@ -12,7 +12,6 @@ services:
       - ../databases/drupal8:/var/lib/mysql
 
   development:
-    build: ./
     hostname: "dev"
     image: malera/hackataller
     working_dir: /drupal/src/docroot

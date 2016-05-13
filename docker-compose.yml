@@ -13,7 +13,7 @@ services:
 
   development:
     hostname: "dev"
-    image: malera/hackataller
+    image: taller/hackataller
     working_dir: /drupal/src/docroot
     cap_add:
       - NET_ADMIN

@@ -27,6 +27,8 @@ $ docker-compose run --rm -p 8080:80 development
 
   * Depois basta acessa em seu navegador o [http://localhost:8080](http://localhost:8080)
   * As configurações de seu banco de dados estão definidas no docker-compose.yml e são as seguintes:
+
+      - *Host:* drupal-db
       - *Database:* drupal_8
       - *User:* drupal8
       - *User Password:* SenhaDrupal8

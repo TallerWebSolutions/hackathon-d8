@@ -16,7 +16,7 @@ use Drupal\Core\Block\BlockBase;
 class ExampleBlock extends BlockBase {
   public function build() {
     return array(
-      '#markup' => $this->t('Hello, World!'),
+      '#markup' => 'Hello, World!',
     );
   }
 }

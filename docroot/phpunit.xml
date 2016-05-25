@@ -17,7 +17,7 @@
     <env name="BROWSERTEST_OUTPUT_DIRECTORY" value=""/>
   </php>
   <testsuites>
-    <testsuite name="web">
+    <testsuite name="custom">
       <directory>./modules/*/Tests</directory>
     </testsuite>
   </testsuites>

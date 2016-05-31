@@ -25,11 +25,15 @@ Para entrar na máquina virtual, execute esse comando
 $ docker-compose run --rm -p 8080:80 development
 ```
 
+Para instalar o site usando drush
+```sh
+$ drush site-install --db-url=mysql://drupal8:SenhaDrupal8@drupal-db/drupal_8
+```
+
 Para rodar os testes dentro da máquina virtual, executar os testes dentro da pasta docroot
 ```sh
 drupal@dev:~/src/docroot$ phpunit -c phpunit.xml
 ```
-
 
   * Depois basta acessa em seu navegador o [http://localhost:8080](http://localhost:8080)
   * As configurações de seu banco de dados estão definidas no docker-compose.yml e são as seguintes:

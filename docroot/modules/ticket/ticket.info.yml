@@ -1,0 +1,5 @@
+name: ticket
+type: module
+description: 'Implements ticket functionality for the support system.'
+package: Support
+core: 8.x

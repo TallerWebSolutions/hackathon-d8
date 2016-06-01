@@ -1,10 +1,15 @@
 <?php
 
-namespace Drupal\example_block\Tests\Plugin\Block;
+namespace Drupal\Tests\example_block\Unit;
 
 use Drupal\Tests\UnitTestCase;
 use Drupal\example_block\Plugin\Block\ExampleBlock;
 
+/**
+ * Tests generation of example_block.
+ *
+ * @group example_block
+ */
 class ExampleBlockTest extends UnitTestCase {
   private $transliteration, $config, $block_id;
 

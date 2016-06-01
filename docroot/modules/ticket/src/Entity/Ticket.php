@@ -27,5 +27,7 @@ class Ticket extends ContentEntityBase implements TicketInterface {
         'max_length' => 255,
         'text_processing' => 0,
       ));
+
+    return $fields;
   }
 }

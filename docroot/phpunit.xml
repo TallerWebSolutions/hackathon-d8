@@ -18,7 +18,8 @@
   </php>
   <testsuites>
     <testsuite name="custom">
-      <directory>./modules/*/Tests</directory>
+      <directory>./modules/*/tests</directory>
+      <!-- <directory>./modules/*/Tests</directory> -->
     </testsuite>
   </testsuites>
 

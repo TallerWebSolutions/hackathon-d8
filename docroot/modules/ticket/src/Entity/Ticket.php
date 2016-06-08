@@ -12,11 +12,32 @@ use Drupal\ticket\TicketInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
+/**
+ * @ContentEntityType(
+ *   id = "ticket",
+ *   label = @Translation("Ticket"),
+ *   handlers = {
+ *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *   },
+ *   list_cache_contexts = { "user" },
+ *   base_table = "ticket",
+ *   entity_keys = {
+ *     "id" = "id",
+ *     "label" = "title",
+ *     "uuid" = "uuid"
+ *   }
+ * )
+ */
 class Ticket extends ContentEntityBase implements TicketInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
       ->setLabel(t('UUID'))
       ->setDescription(t('The UUID of the Ticket Entity'))
+      ->setReadOnly(TRUE);
+
+    $fields['id'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('ID'))
+      ->setDescription(t('The ID of the Ticket entity.'))
       ->setReadOnly(TRUE);
 
     $fields['title'] = BaseFieldDefinition::create('string')

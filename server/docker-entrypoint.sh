@@ -6,6 +6,8 @@ sudo service php5-fpm stop
 sudo service php5-fpm start
 sudo service nginx start
 
+sudo chown $UID:$UID -R /drupal/src
+
 while ! nc -q 1 drupal-db 3306 </dev/null; do sleep 3; done
 
 if [ ! -f /drupal/src/docroot/sites/default/settings.php ]

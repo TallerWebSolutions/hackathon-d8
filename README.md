@@ -12,17 +12,14 @@ Clone o projeto
 $ git clone https://github.com/TallerWebSolutions/hackathon-d8.git
 $ cd hackathon-d8/
 ```
-
----------------------
-Para baixar uma imagem pronta, execute esse comando:
-```sh
-$ docker pull taller/hackataller
-```
-
 ---------------------
 Para entrar na máquina virtual, execute esse comando
 ```sh
-$ docker-compose run --rm -p 8080:80 development
+$ make run
+```
+Quando sair do container é recomendado executar esse comando para derrubar o mysql
+```sh
+$ make stop
 ```
 
 Para instalar o site usando drush
@@ -34,6 +31,7 @@ Para rodar os testes dentro da máquina virtual, executar os testes dentro da pa
 ```sh
 drupal@dev:~/src/docroot$ phpunit -c phpunit.xml
 ```
+
 
   * Depois basta acessa em seu navegador o [http://localhost:8080](http://localhost:8080)
   * As configurações de seu banco de dados estão definidas no docker-compose.yml e são as seguintes:

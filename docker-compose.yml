@@ -8,13 +8,12 @@ services:
       - MYSQL_DATABASE=drupal_8
       - MYSQL_PASSWORD=SenhaDrupal8
       - MYSQL_ROOT_PASSWORD=SenhaRootDrupal8
-    volumes:
-      - ../databases/drupal8:/var/lib/mysql
+    # volumes:
+    #   - ../databases/drupal8:/var/lib/mysql
 
   development:
     hostname: "dev"
-    image: taller/hackatallernode
-    build: ./
+    image: taller/hackataller
     working_dir: /drupal/src/docroot
     cap_add:
       - NET_ADMIN

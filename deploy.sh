@@ -1,3 +1,4 @@
+cd ..
 git clone hackataller@svn-5550.devcloud.hosting.acquia.com:hackataller.git
 
 echo -e '\n #Go to cloned repo and checkout/pull branch. \n'

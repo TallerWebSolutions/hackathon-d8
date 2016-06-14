@@ -1,7 +1,4 @@
-git config --global user.name "Taller Semaphore CI"
-git config --global user.email "dev@taller.net.br"
-
-cd ../../
+cd ..
 git clone hackataller@svn-5550.devcloud.hosting.acquia.com:hackataller.git
 
 echo '\n #Go to cloned repo and checkout/pull branch. \n'

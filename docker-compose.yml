@@ -15,7 +15,7 @@ services:
     hostname: "dev"
     image: taller/hackataller
     working_dir: /drupal/src/docroot
-    build: ./
+    #build: ./
     cap_add:
       - NET_ADMIN
       - SYS_ADMIN

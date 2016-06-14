@@ -31,7 +31,7 @@ class TicketTest extends EntityKernelTestBase {
     $entity->save();
 
     $tickets = array_values(entity_load_multiple_by_properties('ticket', array('title' => 'test')));
-    $this->assertEqual(count($tickets), 1);
+    $this->assertEqual(count($tickets), 2);
     // $this->assertTrue(!empty($entity->uuid), 'The ticket was not properly created.');
   }
 }

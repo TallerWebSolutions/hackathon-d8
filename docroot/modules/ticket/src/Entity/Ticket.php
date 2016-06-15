@@ -49,6 +49,19 @@ class Ticket extends ContentEntityBase implements TicketInterface {
         'text_processing' => 0,
       ));
 
+    $fields['message'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Message'))
+      ->setDescription(t('The message of the Ticket Entity'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 600,
+        'text_processing' => 0,
+      ));
+
+    $fields['created'] = BaseFieldDefinition::create('created')
+      ->setLabel(t('Created'))
+      ->setDescription(t('Date created of Ticket Entity'));
+
     return $fields;
   }
 }

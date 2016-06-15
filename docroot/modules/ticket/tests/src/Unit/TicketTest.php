@@ -35,9 +35,33 @@ class TicketTest extends EntityKernelTestBase {
     $actual_tickets = array_values(entity_load_multiple_by_properties('ticket', array('title' => 'test')));
 
     $expected_length = 3;
-    $actual_length   = count($actual_tickets);
+    $this->assertCount($expected_length, $actual_tickets);
+  }
 
-    $this->assertEquals($expected_length, $actual_length);
-    //$this->assertTrue(!empty($entity->uuid), 'The ticket was not properly created.');
+  public function testSaveTicket() {
+    $ticket_title   = 'Ticket for Test';
+    $ticket_message = 'Description for test';
+
+    $entity = $this->container->get('entity_type.manager')
+      ->getStorage('ticket')
+      ->create(array(
+        'title'   => $ticket_title,
+        'message' => $ticket_message
+      ));
+    $entity->save();
+
+    $tickets_loaded = entity_load_multiple_by_properties('ticket', array('title' => $ticket_title));
+    $ticket_saved   = 1;
+    $this->assertCount($ticket_saved, $tickets_loaded);
+
+    $ticket = $tickets_loaded[1];
+
+    $this->assertEquals($ticket_title,   $ticket->title->value);
+    $this->assertEquals($ticket_message, $ticket->message->value);
+
+    $expected_created = date('y/m/d');
+    $actual_created   = date('y/m/d', $ticket->created->value);
+
+    $this->assertEquals($expected_created, $actual_created);
   }
 }

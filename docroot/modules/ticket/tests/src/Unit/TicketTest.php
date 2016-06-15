@@ -19,20 +19,37 @@ class TicketTest extends EntityKernelTestBase {
     $this->installEntitySchema('ticket');
   }
 
-  private function newTicket($title) {
+  private function newTicket($title, $message = '') {
     $entity = $this->container->get('entity_type.manager')
       ->getStorage('ticket')
-      ->create(array('title' => $title));
+      ->create(array(
+        'title'   => $title,
+        'message' => $message
+      ));
 
-    return $entity->save();
+    $entity->save();
+    return $entity;
+  }
+
+  protected function assertActualDate($date) {
+    $current_date  = date('y/m/d');
+    $expected_date = date('y/m/d', $date);
+    $this->assertEquals($current_date, $expected_date);
+  }
+
+  protected function searchTicket($params) {
+    return entity_load_multiple_by_properties('ticket', $params);
   }
 
   public function testTicketCrud() {
-    $this->newTicket('test');
-    $this->newTicket('test');
-    $this->newTicket('test');
+    $ticket_title   = 'Ticket for Test';
+    $ticket_message = 'Description for test';
 
-    $actual_tickets = array_values(entity_load_multiple_by_properties('ticket', array('title' => 'test')));
+    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message);
+
+    $actual_tickets = $this->searchTicket(['title' => $ticket_title]); //
 
     $expected_length = 3;
     $this->assertCount($expected_length, $actual_tickets);
@@ -42,26 +59,16 @@ class TicketTest extends EntityKernelTestBase {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
 
-    $entity = $this->container->get('entity_type.manager')
-      ->getStorage('ticket')
-      ->create(array(
-        'title'   => $ticket_title,
-        'message' => $ticket_message
-      ));
-    $entity->save();
+    $this->newTicket($ticket_title, $ticket_message);
 
-    $tickets_loaded = entity_load_multiple_by_properties('ticket', array('title' => $ticket_title));
+    $tickets_loaded = $this->searchTicket(['title' => $ticket_title]); //
     $ticket_saved   = 1;
     $this->assertCount($ticket_saved, $tickets_loaded);
 
-    $ticket = $tickets_loaded[1];
+    $ticket = array_pop($tickets_loaded);
 
     $this->assertEquals($ticket_title,   $ticket->title->value);
     $this->assertEquals($ticket_message, $ticket->message->value);
-
-    $expected_created = date('y/m/d');
-    $actual_created   = date('y/m/d', $ticket->created->value);
-
-    $this->assertEquals($expected_created, $actual_created);
+    $this->assertActualDate($ticket->created->value);
   }
 }

@@ -19,12 +19,13 @@ class TicketTest extends EntityKernelTestBase {
     $this->installEntitySchema('ticket');
   }
 
-  private function newTicket($title, $message = '') {
+  private function newTicket($title, $message, $file = '') {
     $entity = $this->container->get('entity_type.manager')
       ->getStorage('ticket')
       ->create(array(
         'title'   => $title,
-        'message' => $message
+        'message' => $message,
+        'file'    => $file,
       ));
 
     $entity->save();
@@ -44,12 +45,13 @@ class TicketTest extends EntityKernelTestBase {
   public function testTicketCrud() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
+    $ticket_file    = '';
 
-    $this->newTicket($ticket_title, $ticket_message);
-    $this->newTicket($ticket_title, $ticket_message);
-    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
 
-    $actual_tickets = $this->searchTicket(['title' => $ticket_title]); //
+    $actual_tickets = $this->searchTicket(['title' => $ticket_title]);
 
     $expected_length = 3;
     $this->assertCount($expected_length, $actual_tickets);
@@ -58,10 +60,11 @@ class TicketTest extends EntityKernelTestBase {
   public function testSaveTicket() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
+    $ticket_file    = '';
 
-    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
 
-    $tickets_loaded = $this->searchTicket(['title' => $ticket_title]); //
+    $tickets_loaded = $this->searchTicket(['title' => $ticket_title]);
     $ticket_saved   = 1;
     $this->assertCount($ticket_saved, $tickets_loaded);
 
@@ -69,6 +72,7 @@ class TicketTest extends EntityKernelTestBase {
 
     $this->assertEquals($ticket_title,   $ticket->title->value);
     $this->assertEquals($ticket_message, $ticket->message->value);
+    $this->assertEquals($ticket_file, $ticket->file->value);
     $this->assertActualDate($ticket->created->value);
   }
 }

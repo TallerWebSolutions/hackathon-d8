@@ -62,6 +62,15 @@ class Ticket extends ContentEntityBase implements TicketInterface {
       ->setLabel(t('Created'))
       ->setDescription(t('Date created of Ticket Entity'));
 
+    $fields['file'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('File'))
+      ->setDescription(t('The attached file of the Ticket Entity'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ));
+
     return $fields;
   }
 }

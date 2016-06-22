@@ -29,7 +29,7 @@ class TicketTest extends EntityKernelTestBase {
     return file_save_data($data, 'public://druplicon.png', FILE_EXISTS_REPLACE);
   }
 
-  private function newTicket($title, $message, $file = '') {
+  private function newTicket($title, $message, $file) {
     $entity = $this->container->get('entity_type.manager')
       ->getStorage('ticket')
       ->create(array(
@@ -86,5 +86,17 @@ class TicketTest extends EntityKernelTestBase {
 
     $this->assertNotEmpty($ticket->file->target_id);
     $this->assertActualDate($ticket->created->value);
+  }
+
+  public function testGetCanonicalUrl() {
+    $ticket_title   = 'Ticket for Test';
+    $ticket_message = 'Description for test';
+    $ticket_file = $this->newFile();
+
+    $ticket = $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $url = $ticket->url();
+
+    $this->assertNotEmpty($url);
+    $this->assertEquals($url, '/ticket/1');
   }
 }

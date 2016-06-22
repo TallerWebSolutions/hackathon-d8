@@ -18,6 +18,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   label = @Translation("Ticket"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "route_provider" = {
+ *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
+ *     },
  *   },
  *   list_cache_contexts = { "user" },
  *   base_table = "ticket",
@@ -25,6 +28,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "id" = "id",
  *     "label" = "title",
  *     "uuid" = "uuid"
+ *   },
+ *   links = {
+ *     "canonical" = "/ticket/{ticket}"
  *   }
  * )
  */

@@ -20,8 +20,12 @@ class TicketTest extends EntityKernelTestBase {
     $this->installEntitySchema('file');
   }
 
+  private static function sampleImagePath() {
+    return dirname(__FILE__) . '/assets/drupalicon.png';
+  }
+
   private function newFile() {
-    $data = file_get_contents('https://www.drupal.org/files/drupal%208%20logo%20Stacked%20CMYK%20300.png');
+    $data = file_get_contents(self::sampleImagePath());
     return file_save_data($data, 'public://druplicon.png', FILE_EXISTS_REPLACE);
   }
 

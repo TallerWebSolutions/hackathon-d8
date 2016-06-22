@@ -19,7 +19,6 @@
   <testsuites>
     <testsuite name="custom">
       <directory>./modules/*/tests</directory>
-      <directory>./modules/*/Tests</directory>
     </testsuite>
   </testsuites>
 

@@ -29,6 +29,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  * )
  */
 class Ticket extends ContentEntityBase implements TicketInterface {
+
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
       ->setLabel(t('UUID'))
@@ -62,13 +63,11 @@ class Ticket extends ContentEntityBase implements TicketInterface {
       ->setLabel(t('Created'))
       ->setDescription(t('Date created of Ticket Entity'));
 
-    $fields['file'] = BaseFieldDefinition::create('string')
+    $fields['file'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('File'))
       ->setDescription(t('The attached file of the Ticket Entity'))
       ->setSettings(array(
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
+        'target_type' => 'file',
       ));
 
     return $fields;

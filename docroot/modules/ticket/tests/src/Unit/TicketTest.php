@@ -12,11 +12,17 @@ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
  * @group ticket
  */
 class TicketTest extends EntityKernelTestBase {
-  public static $modules = ['user', 'system', 'field', 'text', 'filter', 'ticket'];
+  public static $modules = ['user', 'system', 'field', 'text', 'filter', 'ticket', 'file'];
 
   protected function setUp() {
     parent::setUp();
     $this->installEntitySchema('ticket');
+    $this->installEntitySchema('file');
+  }
+
+  private function newFile() {
+    $data = file_get_contents('https://www.drupal.org/files/drupal%208%20logo%20Stacked%20CMYK%20300.png');
+    return file_save_data($data, 'public://druplicon.png', FILE_EXISTS_REPLACE);
   }
 
   private function newTicket($title, $message, $file = '') {
@@ -25,10 +31,14 @@ class TicketTest extends EntityKernelTestBase {
       ->create(array(
         'title'   => $title,
         'message' => $message,
-        'file'    => $file,
       ));
 
+    $file = $this->newFile();
+    $entity->file->setValue([
+      'target_id' => $file->id(),
+    ]);
     $entity->save();
+
     return $entity;
   }
 
@@ -45,11 +55,10 @@ class TicketTest extends EntityKernelTestBase {
   public function testTicketCrud() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
-    $ticket_file    = '';
 
-    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
-    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
-    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message);
 
     $actual_tickets = $this->searchTicket(['title' => $ticket_title]);
 
@@ -60,9 +69,8 @@ class TicketTest extends EntityKernelTestBase {
   public function testSaveTicket() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
-    $ticket_file    = '';
 
-    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message);
 
     $tickets_loaded = $this->searchTicket(['title' => $ticket_title]);
     $ticket_saved   = 1;
@@ -72,7 +80,8 @@ class TicketTest extends EntityKernelTestBase {
 
     $this->assertEquals($ticket_title,   $ticket->title->value);
     $this->assertEquals($ticket_message, $ticket->message->value);
-    $this->assertEquals($ticket_file, $ticket->file->value);
+
+    $this->assertNotEmpty($ticket->file->target_id);
     $this->assertActualDate($ticket->created->value);
   }
 }

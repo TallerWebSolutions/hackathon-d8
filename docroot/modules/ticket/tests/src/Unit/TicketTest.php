@@ -31,12 +31,9 @@ class TicketTest extends EntityKernelTestBase {
       ->create(array(
         'title'   => $title,
         'message' => $message,
+        'file'    => $file->id(),
       ));
 
-    $file = $this->newFile();
-    $entity->file->setValue([
-      'target_id' => $file->id(),
-    ]);
     $entity->save();
 
     return $entity;
@@ -55,10 +52,11 @@ class TicketTest extends EntityKernelTestBase {
   public function testTicketCrud() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
+    $ticket_file = $this->newFile();
 
-    $this->newTicket($ticket_title, $ticket_message);
-    $this->newTicket($ticket_title, $ticket_message);
-    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
 
     $actual_tickets = $this->searchTicket(['title' => $ticket_title]);
 
@@ -69,8 +67,9 @@ class TicketTest extends EntityKernelTestBase {
   public function testSaveTicket() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
+    $ticket_file = $this->newFile();
 
-    $this->newTicket($ticket_title, $ticket_message);
+    $this->newTicket($ticket_title, $ticket_message, $ticket_file);
 
     $tickets_loaded = $this->searchTicket(['title' => $ticket_title]);
     $ticket_saved   = 1;

@@ -21,7 +21,7 @@ class TicketTest extends EntityKernelTestBase {
   }
 
   private static function sampleImagePath() {
-    return dirname(__FILE__) . '/assets/drupalicon.png';
+    return dirname(__FILE__) . '/assets/druplicon.png';
   }
 
   private function newFile() {

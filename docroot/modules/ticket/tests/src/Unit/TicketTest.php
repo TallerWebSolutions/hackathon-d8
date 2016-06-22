@@ -88,7 +88,7 @@ class TicketTest extends EntityKernelTestBase {
     $this->assertActualDate($ticket->created->value);
   }
 
-  public function testGetCanonicalUrl() {
+  public function testGenerateCanonicalUrl() {
     $ticket_title   = 'Ticket for Test';
     $ticket_message = 'Description for test';
     $ticket_file = $this->newFile();
@@ -99,4 +99,5 @@ class TicketTest extends EntityKernelTestBase {
     $this->assertNotEmpty($url);
     $this->assertEquals($url, '/ticket/1');
   }
+
 }

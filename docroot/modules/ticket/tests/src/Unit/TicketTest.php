@@ -99,5 +99,4 @@ class TicketTest extends EntityKernelTestBase {
     $this->assertNotEmpty($url);
     $this->assertEquals($url, '/ticket/1');
   }
-
 }

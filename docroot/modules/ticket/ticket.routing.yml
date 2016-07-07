@@ -1,0 +1,7 @@
+ticket.add:
+  path: '/ticket/add'
+  defaults:
+    _entity_form: ticket.add
+    _title: 'Add Ticket'
+  requirements:
+    _permission: 'add ticket'

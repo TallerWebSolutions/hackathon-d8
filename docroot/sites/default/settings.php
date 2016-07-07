@@ -285,7 +285,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '4BNiDq7h8P4JKpQEJXs95IGQzjdJwiDLVR1cQ5P2JYSIhRJedbYNNEkyvGA15jWI6vBgFd3Wxg';
+$settings['hash_salt'] = 'f7XmJHe_ss_KAzTZH35fM-GgiAz7MWE0j4T2fpzsLZjY1n7y4-LXvY1u-GNTzriZQu2acCv0bQ';
 
 /**
  * Deployment identifier.
@@ -725,3 +725,15 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/hackataller/hackataller-settings.inc');
 }
+$databases['default']['default'] = array (
+  'database' => 'drupal_8',
+  'username' => 'drupal8',
+  'password' => 'SenhaDrupal8',
+  'prefix' => '',
+  'host' => 'drupal-db',
+  'port' => '',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+$settings['install_profile'] = 'standard';
+$config_directories['sync'] = 'sites/default/files/config_Mn2zgGpdVFsUAnU8csBLBAo3V9D-giOk9Sp_e_ByB5iOEBtcnFd2SCaXlXxrLvsSfm2gKKBuLg/sync';

@@ -21,6 +21,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *     },
+ *     "form" = {
+ *       "add" = "Drupal\ticket\Entity\TicketForm"
+ *     },
  *   },
  *   list_cache_contexts = { "user" },
  *   base_table = "ticket",

@@ -3,6 +3,8 @@ status: true
 dependencies:
     module:
         - node
+_core:
+    default_config_hash: q2XyUd0wC96cNvj5nk0Z7PN3M02lWeBwAEGZHUBgRdk
 id: node.field_answer
 field_name: field_answer
 entity_type: node

@@ -4,10 +4,13 @@ dependencies:
     config:
         - field.field.node.faq.body
         - field.field.node.faq.field_answer
+        - field.field.node.faq.field_question
         - node.type.faq
     module:
         - path
         - text
+_core:
+    default_config_hash: YbvQWJIUhkDxNhptoT230aXqVj3pS1Bigl7-tusGAog
 id: node.faq.default
 targetEntityType: node
 bundle: faq
@@ -28,6 +31,13 @@ content:
         third_party_settings: {  }
     field_answer:
         weight: 32
+        settings:
+            size: 60
+            placeholder: ''
+        third_party_settings: {  }
+        type: string_textfield
+    field_question:
+        weight: 33
         settings:
             size: 60
             placeholder: ''

@@ -1,0 +1,5 @@
+name: FAQ
+type: module
+description: Frenquent Asked Questions Module for Ticket Suport
+core: 8.x
+package: Custom

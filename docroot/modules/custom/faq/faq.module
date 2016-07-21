@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains faq.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function faq_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the faq module.
+    case 'help.page.faq':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Frenquent Asked Questions Module for Ticket Suport') . '</p>';
+      return $output;
+
+    default:
+  }
+}

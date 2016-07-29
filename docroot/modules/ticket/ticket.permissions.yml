@@ -1,0 +1,22 @@
+add msg entity entities:
+  title: 'Create new Msg entity entities'
+
+administer msg entity entities:
+  title: 'Administer Msg entity entities'
+  description: 'Allow to access the administration form to configure Msg entity entities.'
+  restrict access: true
+
+delete msg entity entities:
+  title: 'Delete Msg entity entities'
+
+edit msg entity entities:
+  title: 'Edit Msg entity entities'
+
+access msg entity overview:
+  title: 'Access the Msg entity overview page'
+
+view published msg entity entities:
+  title: 'View published Msg entity entities'
+
+view unpublished msg entity entities:
+  title: 'View unpublished Msg entity entities'

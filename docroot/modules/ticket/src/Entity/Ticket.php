@@ -33,7 +33,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "canonical" = "/ticket/{ticket}"
+ *     "canonical" = "/ticket/{ticket}",
+ *     "add-page" = "/admin/structure/ticket/add"
  *   }
  * )
  */
@@ -57,16 +58,25 @@ class Ticket extends ContentEntityBase implements TicketInterface {
         'default_value' => '',
         'max_length' => 255,
         'text_processing' => 0,
-      ));
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'string_textfield',
+        'weight' => -4,
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
-    $fields['message'] = BaseFieldDefinition::create('string')
+    $fields['message'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Message'))
       ->setDescription(t('The message of the Ticket Entity'))
       ->setSettings(array(
         'default_value' => '',
         'max_length' => 600,
         'text_processing' => 0,
-      ));
+      ))
+      ->setDisplayOptions('form', [
+        'type' => 'string_textarea',
+        'weight' => -2,
+      ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))

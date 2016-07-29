@@ -21,16 +21,6 @@ class TicketForm extends ContentEntityForm {
 
     $ticket = $this->entity;
 
-    $form['title'] = array(
-      '#type' => 'textfield',
-      '#title' => 'Titulo',
-    );
-
-    $form['message'] = array(
-      '#type' => 'textarea',
-      '#title' => 'Message',
-    );
-
     return $form;
   }
 

@@ -15,9 +15,12 @@ class TicketFormTest extends EntityKernelTestBase {
   public static $modules = ['user', 'system', 'field', 'text', 'filter', 'ticket', 'file'];
 
   public function testTicketForm() {
-    //$form = \Drupal::formBuilder()->getForm('Drupal\ticket\Entity\TicketForm');
-    //$this->assertNotEmpty($form);
-    $this->assertTrue(TRUE);
+
+    $entity = $this->container->get('entity_type.manager')->getStorage('ticket')->create();
+    $form = \Drupal::service('entity.form_builder')->getForm($entity, 'add');
+
+    $this->assertNotEmpty($form['title']);
+    $this->assertNotEmpty($form['message']);
   }
 
 }

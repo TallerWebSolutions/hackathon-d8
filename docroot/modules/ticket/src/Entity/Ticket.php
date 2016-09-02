@@ -7,7 +7,7 @@
 
 namespace Drupal\ticket\Entity;
 
-use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\ticket\TicketInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -27,10 +27,15 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  *   list_cache_contexts = { "user" },
  *   base_table = "ticket",
+ *   revision_table = "ticket_revision",
+ *   revision_data_table = "ticket_revision_field",
+ *   revisionable = true,
  *   entity_keys = {
  *     "id" = "id",
+ *     "revision" = "revision_id",
  *     "label" = "title",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "uid" = "user_id"
  *   },
  *   links = {
  *     "canonical" = "/ticket/{ticket}",
@@ -38,9 +43,11 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   }
  * )
  */
-class Ticket extends ContentEntityBase implements TicketInterface {
+class Ticket extends RevisionableContentEntityBase implements TicketInterface {
 
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    $fields = parent::baseFieldDefinitions($entity_type);
+
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
       ->setLabel(t('UUID'))
       ->setDescription(t('The UUID of the Ticket Entity'))

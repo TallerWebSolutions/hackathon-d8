@@ -6,7 +6,7 @@
 
 namespace Drupal\ticket;
 
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\RevisionableInterface;
 
 /**
  * Provides an interface defining a ticket entity.
@@ -15,6 +15,6 @@ use Drupal\Core\Entity\ContentEntityInterface;
  *
  * @ingroup ticket
  */
-interface TicketInterface extends ContentEntityInterface {
+interface TicketInterface extends RevisionableInterface {
 
 }
